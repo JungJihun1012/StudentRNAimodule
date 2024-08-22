@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import {  QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import RootNavigation from "./src/navigation/RootNavigation";
 
 function App() {

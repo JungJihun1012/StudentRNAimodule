@@ -7,7 +7,7 @@ import  {OPENAI_API_KEY}  from "@env"
  * @param question
  */
 
-export const testDavinci = (question: any) => {
+export const testDavinci = async (question: string) => {
     const data = JSON.stringify({
         "model": "text-davinci-003",
         "prompt": question,
@@ -20,22 +20,23 @@ export const testDavinci = (question: any) => {
         "logprobs": null
     });
 
-    return fetch("https://api.openai.com/v1/completions", {
+    const response = await fetch("https://api.openai.com/v1/completions", {
         method: "POST",
         headers: {
             'content-type': "application/json",
-            "Authorization": "Bearer" + process.env.OPENAI_API_KEY,
+            "Authorization": "Bearer" + OPENAI_API_KEY,
         },
         body: data,
-    }). then(response => response.json());
+    });
+    return await response.json();
 }
 
 /**
  *  gpt-3.5-turbo 모델 호출
- * @param { * } question
+ * @param { string } question
  */
 
-export const TestFetch =  (question: any) => {
+export const TestFetch = async  (question: string) => {
     const data = JSON.stringify({
         "model": "gpt-3.5-turbo",
         "messages": [
@@ -43,14 +44,14 @@ export const TestFetch =  (question: any) => {
             {"role": "user", "content": question}
         ]
     });
-    return fetch('https://api.openai.com/v1/chat/complations', {
+    const response = await fetch('https://api.openai.com/v1/chat/complations', {
         method: "POST",
         headers: {
             'content-type': "aplication/json",
-            'Authorization': "Bearer" + process.env.OPENAI_API_KEY,
+            'Authorization': "Bearer" + OPENAI_API_KEY,
         },
         body: data,
-    }).then(response => response.json());
+    });
+    return await response.json();
 }
 
-const Container = styled.View``;
