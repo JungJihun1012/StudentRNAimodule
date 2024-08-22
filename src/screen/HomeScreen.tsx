@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 import styled from "styled-components/native";
-import { TestFetch } from "../components/layout/TestFetch";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { TestFetch } from "../api/ChatAPI";
 
 const HomeScreen = () => { 
     const [answer, setAnswer] = useState("입력 값 없음");
@@ -9,9 +9,9 @@ const HomeScreen = () => {
     const getAnswer = () => {
         setAnswer("입력 값 없음");
         TestFetch("오늘 기분 어때")
-        .then(result => {
+        .then((result: { choices: { message: { content: SetStateAction<string>; }; }[]; }) => {
             setAnswer(result.choices[0].message.content);
-        }).catch(error => console.log('error', error));
+        }).catch((error: any) => console.log('error', error));
     }
 
     return(
