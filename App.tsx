@@ -1,18 +1,17 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { QueryClient, QueryClientProvider } from "react-query";
-import RootNavigation from "./src/navigation/RootNavigation";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Generate from "./src/components/Generate";
+import { StyleSheet } from "react-native";
 
-function App() {
-
-  const queryClient = new QueryClient();
-
+const App: React.FC = () => {
   return(
-    <QueryClientProvider client={queryClient}>
-      <NavigationContainer>
-        <RootNavigation />
-      </NavigationContainer>
-    </QueryClientProvider>
+    <SafeAreaView style={styles.container}>
+      <Generate />
+    </SafeAreaView>
   )
 }
 
+const styles = StyleSheet.create({
+  container: {flex: 1}
+});
 export default App;
